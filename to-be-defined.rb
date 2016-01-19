@@ -94,8 +94,7 @@ puts "Splits S - #{splits[[18,7]]}"
 puts ""
 
 
-
-
+puts "You have entered the Blackjack guide"
 #get first card from user in explicit format
 # first_card = "9 of Spades"
 first_card = "#{rand(2..9)} of Spades"
@@ -116,12 +115,30 @@ dealers_card = "10 of Clubs"
 player = Sum(first_card, second_card)
 dealer = show
 
+puts "First card: #{first_card}"
+puts "Second card: #{second_card}"
+puts "Your sum was: #{Sum(first_card, second_card)}"
+puts "The dealers card was: #{show}"
+puts "How do you want to play your hand? Hard  Soft  Splits"
+# hand = gets.chomp
+hand = "split"
+if hand[0].downcase == "h"
+  puts "hard"
+  optimal(player, dealer, hard)
+elsif hand[0..1].downcase == "so"
+  puts "soft"
+  optimal(player, dealer, soft)
+elsif hand[0..1].downcase == "sp"
+  puts "split"
+  optimal(player, dealer, splits)
+else
+ puts "something went wrong"
+end
+
 
 # puts "Your cards are: The #{first_card} and the #{second_card}"
 # puts "Sum = #{player}"
 # puts "Dealers show card = #{show}"
 #////////
 #add sum dealers here later
-puts "Your sum was: #{Sum(first_card, second_card)}"
-puts "The dealers card was: #{show}"
-optimal(player, dealer, hard)
+# optimal(player, dealer, hard)
