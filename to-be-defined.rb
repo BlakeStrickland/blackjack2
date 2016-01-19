@@ -23,8 +23,8 @@ def optimal(player, dealer, hard)
   puts hard[[player, dealer]]
 end
 #generate dealers cards
-  show = rand(1..11)
-  unkown = rand(1..11)
+  show = rand(2..11)
+  unkown = rand(2..11)
 
 
 #hard
@@ -70,15 +70,16 @@ hard = {[4, 2] => "Hit",[4, 3] => "Hit",[4, 4] => "Hit",[4, 5] => "Hit",[4, 6] =
 
 
 #get first card from user in explicit format
-first_card = "11 of Spades"
+# first_card = "9 of Spades"
+first_card = "#{rand(2..9)} of Spades"
 #puts "Enter your first card"
 #first_card = gets.chomp
 #get second card
-second_card = "7 of Hearts"
+second_card = "#{rand(2..9)} of Hearts"
 #puts "Enter your second card"
 #second_card = gets.chomp
 #get the dealers card
-dealers_card = "7 of Clubs"
+dealers_card = "10 of Clubs"
 #puts "Enter dealers card"
 #dealers_card = gets.chomp
 
@@ -88,4 +89,10 @@ dealers_card = "7 of Clubs"
 player = Sum(first_card, second_card)
 dealer = show
 
+
+puts "Your cards are: The #{first_card} and the #{second_card}"
+puts "Sum = #{player}"
+puts "Dealers show card = #{show}"
+#////////
+#add sum dealers here later
 optimal(player, dealer, hard)
