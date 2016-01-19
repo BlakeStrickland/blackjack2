@@ -53,10 +53,11 @@ end
 
         #hard = {[4...8, 2] => "Hit"}
 
-        puts "Hard Hit - #{hard[[4,2]]}"
-        puts "Hard Dh - #{hard[[4,2]]}"
-        puts "Hard S - #{hard[[4,2]]}"
-        puts "Hard Rh - #{hard[[4,2]]}"
+        puts "Hard Hit - #{hard[[9,9]]}"
+        puts "Hard Dh - #{hard[[11,5]]}"
+        puts "Hard S - #{hard[[15,2]]}"
+        puts "Hard Rh - #{hard[[16,10]]}"
+        puts ""
 
 
         #soft
@@ -70,29 +71,29 @@ end
               }
 
               puts "Soft Hit - #{soft[[13,2]]}"
-              puts "Soft Dh - #{soft[[13,5]]}"
-              puts "Soft Ds - #{soft[[18,2]]}"
+              puts "Soft Dh - #{soft[[15,5]]}"
+              puts "Soft Ds - #{soft[[18,5]]}"
               puts "Soft S - #{soft[[19,6]]}"
-              puts "Soft S - #{soft[[20,5]]}"
+              # puts "Soft S - #{if soft[[20,5]] ? puts "Unkown1" : puts "Unknown2"}"
+              puts ""
 
 
 
               #soft
-              soft = {[13, 2] => "Hit",[13, 3] => "Hit",[13, 4] => "Hit",[13, 5] => "Dh",[13, 6] => "Dh",[13, 7] => "Hit",[13, 8] => "Hit",[13, 9] => "Hit",[13, 10] => "Hit",[13, 11] => "Hit",
-                      [14, 2] => "Hit",[14, 3] => "Hit",[14, 4] => "Hit",[14, 5] => "Dh",[14, 6] => "Dh",[14, 7] => "Hit",[14, 8] => "Hit",[14, 9] => "Hit",[14, 10] => "Hit",[14, 11] => "Hit",
-                      [15, 2] => "Hit",[15, 3] => "Hit",[15, 4] => "Dh",[15, 5] => "Dh",[15, 6] => "Dh",[15, 7] => "Hit",[15, 8] => "Hit",[15, 9] => "Hit",[15, 10] => "Hit",[15, 11] => "Hit",
-                      [16, 2] => "Hit",[16, 3] => "Hit",[16, 4] => "Dh",[16, 5] => "Dh",[16, 6] => "Dh",[16, 7] => "Hit",[16, 8] => "Hit",[16, 9] => "Hit",[16, 10] => "Hit",[16, 11] => "Hit",
-                      [17, 2] => "Hit",[17, 3] => "Dh",[17, 4] => "Dh",[17, 5] => "Dh",[17, 6] => "Dh",[17, 7] => "Hit",[17, 8] => "Hit",[17, 9] => "Hit",[17, 10] => "Hit",[17, 11] => "Hit",
-                      [18, 2] => "S",[18, 3] => "Ds",[18, 4] => "Ds",[18, 5] => "Ds",[18, 6] => "Ds",[18, 7] => "S",[18, 8] => "S",[18, 9] => "Hit",[18, 10] => "Hit",[18, 11] => "Hit",
-                      [19, 2] => "S",[19, 3] => "S",[19, 4] => "S",[19, 5] => "S",[19, 6] => "S",[19, 7] => "S",[19, 8] => "S",[19, 9] => "S",[19, 10] => "S",[19, 11] => "S",
-                    }
-                    #hard = {[4...8, 2] => "Hit"}
+              splits = {[4, 2] => "Ph",[4, 3] => "Ph",[4, 4] => "P",[4, 5] => "P",[4, 6] => "P",[4, 7] => "P",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
+                        [6, 2] => "Ph",[6, 3] => "Ph",[6, 4] => "P",[6, 5] => "P",[6, 6] => "P",[6, 7] => "P",[6, 8] => "Hit",[6, 9] => "Hit",[6, 10] => "Hit",[6, 11] => "Hit",
+                        [8, 2] => "Hit",[8, 3] => "Hit",[8, 4] => "Hit",[8, 5] => "Ph",[8, 6] => "Ph",[8, 7] => "Hit",[8, 8] => "Hit",[8, 9] => "Hit",[8, 10] => "Hit",[8, 11] => "Hit",
+                        [12, 2] => "Ph",[12, 3] => "P",[12, 4] => "P",[12, 5] => "P",[12, 6] => "P",[12, 7] => "P",[12, 8] => "Hit",[12, 9] => "Hit",[12, 10] => "Hit",[12, 11] => "Hit",
+                        [14, 2] => "P",[14, 3] => "P",[14, 4] => "P",[14, 5] => "P",[14, 6] => "P",[14, 7] => "P",[14, 8] => "Hit",[14, 9] => "Hit",[14, 10] => "Hit",[14, 11] => "Hit",
+                        [16, 2] => "P",[16, 3] => "P",[16, 4] => "P",[16, 5] => "P",[16, 6] => "P",[16, 7] => "P",[16, 8] => "P",[16, 9] => "P",[16, 10] => "P",[16, 11] => "P",
+                        [18, 2] => "P",[18, 3] => "P",[18, 4] => "P",[18, 5] => "P",[18, 6] => "P",[18, 7] => "S",[18, 8] => "P",[18, 9] => "P",[18, 10] => "S",[18, 11] => "S",
+                        [22, 2] => "P",[22, 3] => "P",[22, 4] => "P",[22, 5] => "P",[22, 6] => "P",[22, 7] => "P",[22, 8] => "P",[22, 9] => "P",[22, 10] => "P",[22, 11] => "P",
+                        }
 
-                    # puts "Soft Hit - #{soft[[13,2]]}"
-                    # puts "Soft Dh - #{soft[[13,5]]}"
-                    # puts "Soft Ds - #{soft[[18,2]]}"
-                    # puts "Soft S - #{soft[[19,6]]}"
-                    # puts "Soft S - #{soft[[20,5]]}"
+                    puts "Splits Ph - #{splits[[4,2]]}"
+                    puts "Splits Hit - #{splits[[8,3]]}"
+                    puts "Splits P - #{splits[[16,8]]}"
+                    puts "Splits S - #{splits[[18,7]]}"
 
 
 
@@ -122,9 +123,9 @@ player = Sum(first_card, second_card)
 dealer = show
 
 
-puts "Your cards are: The #{first_card} and the #{second_card}"
-puts "Sum = #{player}"
-puts "Dealers show card = #{show}"
+# puts "Your cards are: The #{first_card} and the #{second_card}"
+# puts "Sum = #{player}"
+# puts "Dealers show card = #{show}"
 #////////
 #add sum dealers here later
 optimal(player, dealer, hard)
