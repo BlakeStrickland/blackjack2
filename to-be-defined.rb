@@ -20,7 +20,25 @@ def Sum(first_card, second_card)
 end
 
 def optimal(player, dealer, hard)
-  puts "Your optimal move is to --  #{hard[[player, dealer]]}  -- at this time"
+  move = hard[[player, dealer]]
+
+  if move[0].downcase == "h"
+    puts "Your optimal move is to --  Hit  -- at this time"
+  elsif move[0].downcase == "s" && move[1].downcase == "t"
+    puts "Your optimal move is to --  Stand  -- at this time"
+  elsif move[0].downcase == "d" && move[1].downcase == "h"
+    puts "Your optimal move is to --  Double if allowed, otherwise hit  -- at this time"
+  elsif move[0].downcase == "d" && move[1].downcase == "s"
+    puts "Your optimal move is to --  Double if allowed, otherwise stand  -- at this time"
+  elsif move[0].downcase == "s" && move[1].downcase == "p"
+    puts "Your optimal move is to --  Split  -- at this time"
+  elsif move[0].downcase == "p" && move[1].downcase == "h"
+    puts "Your optimal move is to --  Split if double after split is allowed, otherwise Hit  -- at this time"
+  elsif move[0].downcase == "r"
+    puts "Your optimal move is to --  Surrender if allowed, otherise hit  -- at this time"
+  else
+    puts "something went wrong"
+  end
 end
 #generate dealers cards
 show = rand(2..11)
@@ -93,15 +111,16 @@ puts "Splits P - #{splits[[16,8]]}"
 puts "Splits S - #{splits[[18,7]]}"
 puts ""
 
+suits = ["Spades", "Hearts", "Diamonds", "Clubs"]
 
 puts "You have entered the Blackjack guide"
 #get first card from user in explicit format
 # first_card = "9 of Spades"
-first_card = "#{rand(2..9)} of Spades"
+first_card = "#{rand(2..9)} of #{suits.sample}"
 #puts "Enter your first card"
 #first_card = gets.chomp
 #get second card
-second_card = "#{rand(2..9)} of Hearts"
+second_card = "#{rand(2..9)} of #{suits.sample}"
 #puts "Enter your second card"
 #second_card = gets.chomp
 #get the dealers card
@@ -121,14 +140,15 @@ puts "Your sum was: #{Sum(first_card, second_card)}"
 puts "The dealers card was: #{show}"
 puts "How do you want to play your hand? Hard  Soft  Splits"
 # hand = gets.chomp
-hand = "split"
-if hand[0].downcase == "h"
+hand = ["hard", "soft", "split"]
+hand = hand.sample
+if hand[0].downcase == "h" && hand.include?([[player,dealer]])
   puts "hard"
   optimal(player, dealer, hard)
-elsif hand[0..1].downcase == "so"
+elsif hand[0..1].downcase == "so" && hand.include?([[player,dealer]])
   puts "soft"
   optimal(player, dealer, soft)
-elsif hand[0..1].downcase == "sp"
+elsif hand[0..1].downcase == "sp" && hand.include?([[player,dealer]])
   puts "split"
   optimal(player, dealer, splits)
 else
