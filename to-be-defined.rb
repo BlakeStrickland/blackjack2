@@ -122,4 +122,6 @@ dealer = show
 # puts "Dealers show card = #{show}"
 #////////
 #add sum dealers here later
+puts "Your sum was: #{Sum(first_card, second_card)}"
+puts "The dealers card was: #{show}"
 optimal(player, dealer, hard)
