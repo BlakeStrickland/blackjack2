@@ -8,3 +8,11 @@
 first_card = "Ace of Spades"
 #puts "Enter your first card"
 #first_card = gets.chomp
+#get second card
+second_card = "7 of Hearts"
+#puts "Enter your second card"
+#second_card = gets.chomp
+#get the dealers card
+dealers_card = "Seven of Clubs"
+#puts "Enter dealers card"
+#dealers_card = gets.chomp
