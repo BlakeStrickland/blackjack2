@@ -14,8 +14,20 @@
 # Split if double after split is allowed, otherwise Hit
 # Surrender if allowed, otherise hit
 
-#hard
+#Validate user input and dealers card
+def Sum(first_card, second_card)
+  sum = first_card.to_i + second_card.to_i
+end
 
+def optimal(player, dealer, hard)
+  puts hard[[player, dealer]]
+end
+#generate dealers cards
+  show = rand(1..11)
+  unkown = rand(1..11)
+
+
+#hard
 hard = {[4, 2] => "Hit",[4, 3] => "Hit",[4, 4] => "Hit",[4, 5] => "Hit",[4, 6] => "Hit",[4, 7] => "Hit",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
         [5, 2] => "Hit",[5, 3] => "Hit",[5, 4] => "Hit",[5, 5] => "Hit",[5, 6] => "Hit",[5, 7] => "Hit",[5, 8] => "Hit",[5, 9] => "Hit",[5, 10] => "Hit",[5, 11] => "Hit",
         [6, 2] => "Hit",[6, 3] => "Hit",[6, 4] => "Hit",[6, 5] => "Hit",[6, 6] => "Hit",[6, 7] => "Hit",[6, 8] => "Hit",[6, 9] => "Hit",[6, 10] => "Hit",[6, 11] => "Hit",
@@ -41,11 +53,11 @@ hard = {[4, 2] => "Hit",[4, 3] => "Hit",[4, 4] => "Hit",[4, 5] => "Hit",[4, 6] =
 
       #hard = {[4...8, 2] => "Hit"}
 
-      puts hard[[4,2]]
-      puts hard[[8,2]]
-      puts hard[[9,6]]
-      puts hard[[12,5]]
-      puts hard[[16,11]]
+      # puts hard[[4,2]]
+      # puts hard[[8,2]]
+      # puts hard[[9,6]]
+      # puts hard[[12,5]]
+      # puts hard[[16,11]]
 
 
 
@@ -58,7 +70,7 @@ hard = {[4, 2] => "Hit",[4, 3] => "Hit",[4, 4] => "Hit",[4, 5] => "Hit",[4, 6] =
 
 
 #get first card from user in explicit format
-first_card = "Ace of Spades"
+first_card = "11 of Spades"
 #puts "Enter your first card"
 #first_card = gets.chomp
 #get second card
@@ -66,6 +78,14 @@ second_card = "7 of Hearts"
 #puts "Enter your second card"
 #second_card = gets.chomp
 #get the dealers card
-dealers_card = "Seven of Clubs"
+dealers_card = "7 of Clubs"
 #puts "Enter dealers card"
 #dealers_card = gets.chomp
+
+#sum players cards
+#show dealers face up card
+#outputs optimal
+player = Sum(first_card, second_card)
+dealer = show
+
+optimal(player, dealer, hard)
