@@ -15,12 +15,10 @@
 # Surrender if allowed, otherise hit
 
 #Validate user input and dealers card
-def Sum(first_card, second_card)
-  sum = first_card.to_i + second_card.to_i
-end
 
-def optimal(player, dealer, hard)
-  move = hard[[player, dealer]]
+
+def optimal(player, dealer, type)
+  move = type[[player, dealer]]
 
   if move[0].downcase == "h"
     puts "Your optimal move is to --  Hit  -- at this time"
@@ -37,12 +35,10 @@ def optimal(player, dealer, hard)
   elsif move[0].downcase == "r"
     puts "Your optimal move is to --  Surrender if allowed, otherise hit  -- at this time"
   else
-    puts "something went wrong"
+    puts "something went wrong1"
   end
 end
-#generate dealers cards
-show = rand(2..11)
-unkown = rand(2..11)
+
 
 
 #hard
@@ -69,11 +65,11 @@ hard = {
 
 #Test that these cords match what they are supposed to be in table
 #Add randomized testing
-puts "Hard Hit - #{hard[[9,9]]}"
-puts "Hard Dh - #{hard[[11,5]]}"
-puts "Hard S - #{hard[[15,2]]}"
-puts "Hard Rh - #{hard[[16,10]]}"
-puts ""
+# puts "Hard Hit - #{hard[[9,9]]}"
+# puts "Hard Dh - #{hard[[11,5]]}"
+# puts "Hard S - #{hard[[15,2]]}"
+# puts "Hard Rh - #{hard[[16,10]]}"
+# puts ""
 
 
 #soft
@@ -87,12 +83,12 @@ soft = {
         [19, 2] => "S",[19, 3] => "S",[19, 4] => "S",[19, 5] => "S",[19, 6] => "S",[19, 7] => "S",[19, 8] => "S",[19, 9] => "S",[19, 10] => "S",[19, 11] => "S",
       }
 
-puts "Soft Hit - #{soft[[13,2]]}"
-puts "Soft Dh - #{soft[[15,5]]}"
-puts "Soft Ds - #{soft[[18,5]]}"
-puts "Soft S - #{soft[[19,6]]}"
-# puts "Soft S - #{if soft[[20,5]] ? puts "Unkown1" : puts "Unknown2"}"
-puts ""
+# puts "Soft Hit - #{soft[[13,2]]}"
+# puts "Soft Dh - #{soft[[15,5]]}"
+# puts "Soft Ds - #{soft[[18,5]]}"
+# puts "Soft S - #{soft[[19,6]]}"
+# # puts "Soft S - #{if soft[[20,5]] ? puts "Unkown1" : puts "Unknown2"}"
+# puts ""
 #soft
 splits = {
           [4, 2] => "Ph",[4, 3] => "Ph",[4, 4] => "P",[4, 5] => "P",[4, 6] => "P",[4, 7] => "P",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
@@ -105,56 +101,69 @@ splits = {
           [22, 2] => "P",[22, 3] => "P",[22, 4] => "P",[22, 5] => "P",[22, 6] => "P",[22, 7] => "P",[22, 8] => "P",[22, 9] => "P",[22, 10] => "P",[22, 11] => "P",
           }
 
-puts "Splits Ph - #{splits[[4,2]]}"
-puts "Splits Hit - #{splits[[8,3]]}"
-puts "Splits P - #{splits[[16,8]]}"
-puts "Splits S - #{splits[[18,7]]}"
-puts ""
+# puts "Splits Ph - #{splits[[4,2]]}"
+# puts "Splits Hit - #{splits[[8,3]]}"
+# puts "Splits P - #{splits[[16,8]]}"
+# puts "Splits S - #{splits[[18,7]]}"
+# puts ""
 
 suits = ["Spades", "Hearts", "Diamonds", "Clubs"]
-
+players_cards = []
+dealers_cards = []
 puts "You have entered the Blackjack guide"
 #get first card from user in explicit format
 # first_card = "9 of Spades"
-first_card = "#{rand(2..9)} of #{suits.sample}"
-#puts "Enter your first card"
-#first_card = gets.chomp
+# first_card = "#{rand(2..9)} of #{suits.sample}"
+puts "Enter your first card"
+first_card = gets.chomp
+players_cards << first_card
 #get second card
-second_card = "#{rand(2..9)} of #{suits.sample}"
-#puts "Enter your second card"
-#second_card = gets.chomp
+# second_card = "#{rand(2..9)} of #{suits.sample}"
+puts "Enter your second card"
+second_card = gets.chomp
+players_cards << second_card
 #get the dealers card
-dealers_card = "10 of Clubs"
-#puts "Enter dealers card"
-#dealers_card = gets.chomp
-
+# dealers_card = "10 of Clubs"
+#generate dealers cards
+# show = rand(2..11)
+# unkown = rand(2..11)
+puts "Enter dealers card"
+dealers_card = gets.chomp
+dealers_cards << dealers_card
 #sum players cards
 #show dealers face up card
 #outputs optimal
-player = Sum(first_card, second_card)
-dealer = show
+player = players_cards.map(&:to_i)
+player = players_cards.inject{|sum,x| sum + x }
 
-puts "First card: #{first_card}"
-puts "Second card: #{second_card}"
-puts "Your sum was: #{Sum(first_card, second_card)}"
-puts "The dealers card was: #{show}"
-puts "How do you want to play your hand? Hard  Soft  Splits"
-# hand = gets.chomp
-hand = ["hard", "soft", "split"]
-hand = hand.sample
-if hand[0].downcase == "h" && hand.include?([[player,dealer]])
-  puts "hard"
-  optimal(player, dealer, hard)
-elsif hand[0..1].downcase == "so" && hand.include?([[player,dealer]])
-  puts "soft"
-  optimal(player, dealer, soft)
-elsif hand[0..1].downcase == "sp" && hand.include?([[player,dealer]])
-  puts "split"
-  optimal(player, dealer, splits)
-else
- puts "something went wrong"
+until player.to_i >= 22
+# puts "How do you want to play your hand? Hard  Soft  Split"
+  hand = hard
+  if hand[0].downcase == "h"
+    puts "hard"
+    if optimal(player, dealer, hard)
+      puts "What will be your next move?"
+      move = gets.chomp
+
+
+
+
+
+
+
+    end
+  elsif hand[0].downcase == "s"
+    puts "soft"
+    if optimal(player, dealer, soft)
+    end
+  elsif hand[1].downcase == "p"
+    puts "split"
+    if optimal(player, dealer, splits)
+    end
+  else
+   puts "something went wrong"
+  end
 end
-
 
 # puts "Your cards are: The #{first_card} and the #{second_card}"
 # puts "Sum = #{player}"
