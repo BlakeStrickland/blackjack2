@@ -134,9 +134,14 @@ dealers_cards << dealers_card
 #show dealers face up card
 #outputs optimal
 player = players_cards.map(&:to_i)
-player = players_cards.inject{|sum,x| sum + x }
+puts "#{player}"
+player = player.inject{|sum, x| sum + x }
+puts "#{player}"
 
-until player.to_i >= 22
+
+
+
+while player.to_i < 22 do
 # puts "How do you want to play your hand? Hard  Soft  Split"
   hand = hard
   if hand[0].downcase == "h"
@@ -164,7 +169,6 @@ until player.to_i >= 22
    puts "something went wrong"
   end
 end
-
 # puts "Your cards are: The #{first_card} and the #{second_card}"
 # puts "Sum = #{player}"
 # puts "Dealers show card = #{show}"
