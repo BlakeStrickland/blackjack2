@@ -16,7 +16,7 @@
 
 #Validate user input and dealers card
 
-
+require 'byebug'
 def optimal(players_sum, dealers_card, type)
   puts "#{players_sum}"
   puts "#{dealers_card}"
@@ -75,15 +75,8 @@ if dealers_cards.inject{|sum, x| sum + x } == 21
   puts "Natural"
 end
 
-
-
-
-
-
-while players_sum.to_i < 22 do
   #hard
-  hard =
-  {
+  hard = {
     [4, 2] => "Hit",[4, 3] => "Hit",[4, 4] => "Hit",[4, 5] => "Hit",[4, 6] => "Hit",[4, 7] => "Hit",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
     [5, 2] => "Hit",[5, 3] => "Hit",[5, 4] => "Hit",[5, 5] => "Hit",[5, 6] => "Hit",[5, 7] => "Hit",[5, 8] => "Hit",[5, 9] => "Hit",[5, 10] => "Hit",[5, 11] => "Hit",
     [6, 2] => "Hit",[6, 3] => "Hit",[6, 4] => "Hit",[6, 5] => "Hit",[6, 6] => "Hit",[6, 7] => "Hit",[6, 8] => "Hit",[6, 9] => "Hit",[6, 10] => "Hit",[6, 11] => "Hit",
@@ -102,7 +95,7 @@ while players_sum.to_i < 22 do
     [19, 2] => "S",[19, 3] => "S",[19, 4] => "S",[19, 5] => "S",[19, 6] => "S",[19, 7] => "S",[19, 8] => "S",[19, 9] => "S",[19, 10] => "S",[19, 11] => "S",
     [20, 2] => "S",[20, 3] => "S",[20, 4] => "S",[20, 5] => "S",[20, 6] => "S",[20, 7] => "S",[20, 8] => "S",[20, 9] => "S",[20, 10] => "S",[20, 11] => "S",
     [21, 2] => "S",[21, 3] => "S",[21, 4] => "S",[21, 5] => "S",[21, 6] => "S",[21, 7] => "S",[21, 8] => "S",[21, 9] => "S",[21, 10] => "S",[21, 11] => "S"
-  }
+         }
 
   #Test that these cords match what they are supposed to be in table
   #Add randomized testing
@@ -114,8 +107,7 @@ while players_sum.to_i < 22 do
 
 
   #soft
-  soft =
-  {
+  soft = {
     [13, 2] => "Hit",[13, 3] => "Hit",[13, 4] => "Hit",[13, 5] => "Dh",[13, 6] => "Dh",[13, 7] => "Hit",[13, 8] => "Hit",[13, 9] => "Hit",[13, 10] => "Hit",[13, 11] => "Hit",
     [14, 2] => "Hit",[14, 3] => "Hit",[14, 4] => "Hit",[14, 5] => "Dh",[14, 6] => "Dh",[14, 7] => "Hit",[14, 8] => "Hit",[14, 9] => "Hit",[14, 10] => "Hit",[14, 11] => "Hit",
     [15, 2] => "Hit",[15, 3] => "Hit",[15, 4] => "Dh",[15, 5] => "Dh",[15, 6] => "Dh",[15, 7] => "Hit",[15, 8] => "Hit",[15, 9] => "Hit",[15, 10] => "Hit",[15, 11] => "Hit",
@@ -123,7 +115,7 @@ while players_sum.to_i < 22 do
     [17, 2] => "Hit",[17, 3] => "Dh",[17, 4] => "Dh",[17, 5] => "Dh",[17, 6] => "Dh",[17, 7] => "Hit",[17, 8] => "Hit",[17, 9] => "Hit",[17, 10] => "Hit",[17, 11] => "Hit",
     [18, 2] => "S",[18, 3] => "Ds",[18, 4] => "Ds",[18, 5] => "Ds",[18, 6] => "Ds",[18, 7] => "S",[18, 8] => "S",[18, 9] => "Hit",[18, 10] => "Hit",[18, 11] => "Hit",
     [19, 2] => "S",[19, 3] => "S",[19, 4] => "S",[19, 5] => "S",[19, 6] => "S",[19, 7] => "S",[19, 8] => "S",[19, 9] => "S",[19, 10] => "S",[19, 11] => "S"
-  }
+        }
 
   # puts "Soft Hit - #{soft[[13,2]]}"
   # puts "Soft Dh - #{soft[[15,5]]}"
@@ -133,17 +125,16 @@ while players_sum.to_i < 22 do
   # puts ""
   #soft
 
-  splits =
-  {
-    [4, 2] => "Ph",[4, 3] => "Ph",[4, 4] => "P",[4, 5] => "P",[4, 6] => "P",[4, 7] => "P",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
-    [6, 2] => "Ph",[6, 3] => "Ph",[6, 4] => "P",[6, 5] => "P",[6, 6] => "P",[6, 7] => "P",[6, 8] => "Hit",[6, 9] => "Hit",[6, 10] => "Hit",[6, 11] => "Hit",
-    [8, 2] => "Hit",[8, 3] => "Hit",[8, 4] => "Hit",[8, 5] => "Ph",[8, 6] => "Ph",[8, 7] => "Hit",[8, 8] => "Hit",[8, 9] => "Hit",[8, 10] => "Hit",[8, 11] => "Hit",
-    [12, 2] => "Ph",[12, 3] => "P",[12, 4] => "P",[12, 5] => "P",[12, 6] => "P",[12, 7] => "P",[12, 8] => "Hit",[12, 9] => "Hit",[12, 10] => "Hit",[12, 11] => "Hit",
-    [14, 2] => "P",[14, 3] => "P",[14, 4] => "P",[14, 5] => "P",[14, 6] => "P",[14, 7] => "P",[14, 8] => "Hit",[14, 9] => "Hit",[14, 10] => "Hit",[14, 11] => "Hit",
-    [16, 2] => "P",[16, 3] => "P",[16, 4] => "P",[16, 5] => "P",[16, 6] => "P",[16, 7] => "P",[16, 8] => "P",[16, 9] => "P",[16, 10] => "P",[16, 11] => "P",
-    [18, 2] => "P",[18, 3] => "P",[18, 4] => "P",[18, 5] => "P",[18, 6] => "P",[18, 7] => "S",[18, 8] => "P",[18, 9] => "P",[18, 10] => "S",[18, 11] => "S",
-    [22, 2] => "P",[22, 3] => "P",[22, 4] => "P",[22, 5] => "P",[22, 6] => "P",[22, 7] => "P",[22, 8] => "P",[22, 9] => "P",[22, 10] => "P",[22, 11] => "P"
-  }
+  splits = {
+  [4, 2] => "Ph",[4, 3] => "Ph",[4, 4] => "P",[4, 5] => "P",[4, 6] => "P",[4, 7] => "P",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
+  [6, 2] => "Ph",[6, 3] => "Ph",[6, 4] => "P",[6, 5] => "P",[6, 6] => "P",[6, 7] => "P",[6, 8] => "Hit",[6, 9] => "Hit",[6, 10] => "Hit",[6, 11] => "Hit",
+  [8, 2] => "Hit",[8, 3] => "Hit",[8, 4] => "Hit",[8, 5] => "Ph",[8, 6] => "Ph",[8, 7] => "Hit",[8, 8] => "Hit",[8, 9] => "Hit",[8, 10] => "Hit",[8, 11] => "Hit",
+  [12, 2] => "Ph",[12, 3] => "P",[12, 4] => "P",[12, 5] => "P",[12, 6] => "P",[12, 7] => "P",[12, 8] => "Hit",[12, 9] => "Hit",[12, 10] => "Hit",[12, 11] => "Hit",
+  [14, 2] => "P",[14, 3] => "P",[14, 4] => "P",[14, 5] => "P",[14, 6] => "P",[14, 7] => "P",[14, 8] => "Hit",[14, 9] => "Hit",[14, 10] => "Hit",[14, 11] => "Hit",
+  [16, 2] => "P",[16, 3] => "P",[16, 4] => "P",[16, 5] => "P",[16, 6] => "P",[16, 7] => "P",[16, 8] => "P",[16, 9] => "P",[16, 10] => "P",[16, 11] => "P",
+  [18, 2] => "P",[18, 3] => "P",[18, 4] => "P",[18, 5] => "P",[18, 6] => "P",[18, 7] => "S",[18, 8] => "P",[18, 9] => "P",[18, 10] => "S",[18, 11] => "S",
+  [22, 2] => "P",[22, 3] => "P",[22, 4] => "P",[22, 5] => "P",[22, 6] => "P",[22, 7] => "P",[22, 8] => "P",[22, 9] => "P",[22, 10] => "P",[22, 11] => "P"
+            }
 
   # puts "Splits Ph - #{splits[[4,2]]}"
   # puts "Splits Hit - #{splits[[8,3]]}"
@@ -154,19 +145,19 @@ while players_sum.to_i < 22 do
   hand = "hard"
   if hand[0].downcase == "h"
     puts "Hard Hand"
-    if optimal(players_sum, dealers_card, hard)
+    if optimal(players_sum, dealers_cards.first, hard)
       puts "What will be your next move?"
       move = gets.chomp
     end
   elsif hand[1].downcase == "p"
     puts "split"
-    if optimal(players_cards, dealers_card, splits)
+    if optimal(players_cards, dealers_cards.first, splits)
       puts "What will be your next move?"
       move = gets.chomp
     end
   elsif hand[0].downcase == "s"
     puts "soft"
-    if optimal(players_cards, dealers_card, soft)
+    if optimal(players_cards, dealers_cards.first, soft)
       puts "What will be your next move?"
       move = gets.chomp
     end
@@ -174,7 +165,7 @@ while players_sum.to_i < 22 do
   else
    puts "something went wrong"
   end
-end
+
 # puts "Your cards are: The #{first_card} and the #{second_card}"
 # puts "Sum = #{player}"
 # puts "Dealers show card = #{show}"
