@@ -18,14 +18,7 @@
 
 require 'byebug'
 def optimal(players_sum, dealers_card, type)
-  puts "#{players_sum}"
-  puts "#{dealers_card}"
-  puts "#{type}"
-  puts ""
   move = type[[players_sum, dealers_card]]
-  puts "#{move}"
-  puts "test"
-
   if move[0].downcase == "h"
     puts "Your optimal move is to --  Hit  -- at this time"
   elsif move[0].downcase == "s"
@@ -43,36 +36,6 @@ def optimal(players_sum, dealers_card, type)
   else
     puts "something went wrong1"
   end
-end
-
-suits = ["Spades", "Hearts", "Diamonds", "Clubs"]
-players_cards = []
-dealers_cards = []
-puts "You have entered the Blackjack guide"
-#get first card from user in explicit format
-# first_card = "9 of Spades"
-# first_card = "#{rand(2..9)} of #{suits.sample}"
-puts "Enter your first card"
-first_card = gets.chomp
-players_cards << first_card.to_i
-#get second card
-# second_card = "#{rand(2..9)} of #{suits.sample}"
-puts "Enter your second card"
-second_card = gets.chomp
-players_cards << second_card.to_i
-#get the dealers card
-# dealers_card = "10 of Clubs"
-#generate dealers cards
-# show = rand(2..11)
-# unkown = rand(2..11)
-puts "Enter dealers card"
-dealers_card = gets.chomp
-dealers_cards << dealers_card.to_i
-dealers_cards << rand(2..11)
-players_sum = players_cards.inject{|sum, x| sum + x }
-puts "#{players_cards}"
-if dealers_cards.inject{|sum, x| sum + x } == 21
-  puts "Natural"
 end
 
   #hard
@@ -141,14 +104,66 @@ end
   # puts "Splits P - #{splits[[16,8]]}"
   # puts "Splits S - #{splits[[18,7]]}"
   # puts ""
+
+
+  suits = ["Spades", "Hearts", "Diamonds", "Clubs"]
+  players_cards = []
+  dealers_cards = []
+  puts "You have entered the Blackjack guide"
+  #get first card from user in explicit format
+  # first_card = "9 of Spades"
+  # first_card = "#{rand(2..9)} of #{suits.sample}"
+  puts "Enter your first card"
+  first_card = gets.chomp
+  players_cards << first_card.to_i
+  #get second card
+  # second_card = "#{rand(2..9)} of #{suits.sample}"
+  puts "Enter your second card"
+  second_card = gets.chomp
+  players_cards << second_card.to_i
+  #get the dealers card
+  # dealers_card = "10 of Clubs"
+  #generate dealers cards
+  # show = rand(2..11)
+  # unkown = rand(2..11)
+  puts "Enter dealers card"
+  dealers_card = gets.chomp
+  dealers_cards << dealers_card.to_i
+  dealers_cards << rand(2..11)
+  players_sum = players_cards.inject{|sum, x| sum + x }
+  dealers_sum = dealers_cards.inject{|sum, x| sum + x }
+  if dealers_sum == 21
+    puts "Natural"
+  end
 # puts "How do you want to play your hand? Hard  Soft  Split"
   hand = "hard"
+
+  while players_sum < 21
   if hand[0].downcase == "h"
     puts "Hard Hand"
-    if optimal(players_sum, dealers_cards.first, hard)
+      optimal(players_sum, dealers_cards.first, hard)
       puts "What will be your next move?"
-      move = gets.chomp
-    end
+      next_move = gets.chomp
+      if next_move.downcase == "hit"
+        card = rand(2..11)
+        players_cards << card
+        players_sum = players_cards.inject{|sum, x| sum + x }
+        puts "#{players_sum}"
+      elsif next_move.downcase == "stand"
+
+
+        if players_sum > dealers_sum && players_sum <= 21
+          puts "you win"
+          break
+        elsif players_sum == dealers_sum && players_sum <= 21
+          puts "equal"
+        else
+          puts "bust"
+        end
+      end
+
+
+
   elsif hand[1].downcase == "p"
     puts "split"
     if optimal(players_cards, dealers_cards.first, splits)
@@ -165,7 +180,7 @@ end
   else
    puts "something went wrong"
   end
-
+end
 # puts "Your cards are: The #{first_card} and the #{second_card}"
 # puts "Sum = #{player}"
 # puts "Dealers show card = #{show}"
