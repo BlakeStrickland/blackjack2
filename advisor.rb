@@ -149,9 +149,9 @@ end
         players_cards << card
         players_sum = players_cards.inject{|sum, x| sum + x }
         puts "#{players_sum}"
+
+        
       elsif next_move.downcase == "stand"
-
-
         if players_sum > dealers_sum && players_sum <= 21
           puts "you win"
           break
