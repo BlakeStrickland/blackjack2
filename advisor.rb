@@ -38,6 +38,16 @@ def optimal(players_sum, dealers_card, type)
   end
 end
 
+def play_again
+  puts "Play again?"
+  play_again = gets.chomp
+
+  if play_again[0].downcase == "y"
+    players_sum = 10
+  else
+  end
+end
+
   #hard
   hard = {
     [4, 2] => "Hit",[4, 3] => "Hit",[4, 4] => "Hit",[4, 5] => "Hit",[4, 6] => "Hit",[4, 7] => "Hit",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
@@ -149,9 +159,20 @@ end
         players_cards << card
         players_sum = players_cards.inject{|sum, x| sum + x }
         puts "#{players_sum}"
-
-        
       elsif next_move.downcase == "stand"
+        if players_sum > dealers_sum && players_sum <= 21
+          puts "you win"
+          break
+        elsif players_sum == dealers_sum && players_sum <= 21
+          puts "equal"
+        else
+          puts "bust"
+        end
+      elsif next_move.downcase == "double"
+        card = rand(2..11)
+        players_cards << card
+        players_sum = players_cards.inject{|sum, x| sum + x }
+        puts "#{players_sum}"
         if players_sum > dealers_sum && players_sum <= 21
           puts "you win"
           break
@@ -180,6 +201,7 @@ end
   else
    puts "something went wrong"
   end
+  play_again
 end
 # puts "Your cards are: The #{first_card} and the #{second_card}"
 # puts "Sum = #{player}"
