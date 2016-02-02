@@ -10,7 +10,7 @@ def play(guess, number)
   all_guesses = []
   count = 1
   while count <= 4
-    if guess == ""
+    if numbernil(guess)
       puts "Did you forget to type?"
       puts "Please enter another guess!"
       guess = gets.chomp
