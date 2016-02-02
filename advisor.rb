@@ -114,36 +114,36 @@ splits = {
   # puts ""
 
 
-  suits = ["Spades", "Hearts", "Diamonds", "Clubs"]
-  players_cards = []
-  dealers_cards = []
-  puts "You have entered the Blackjack guide"
-  #get first card from user in explicit format
-  # first_card = "9 of Spades"
-  # first_card = "#{rand(2..9)} of #{suits.sample}"
-  puts "Enter your first card"
-  first_card = gets.chomp
-  players_cards << first_card.to_i
-  #get second card
-  # second_card = "#{rand(2..9)} of #{suits.sample}"
-  puts "Enter your second card"
-  second_card = gets.chomp
-  players_cards << second_card.to_i
-  #get the dealers card
-  # dealers_card = "10 of Clubs"
-  #generate dealers cards
-  # show = rand(2..11)
-  # unkown = rand(2..11)
-  puts "Enter dealers card"
-  dealers_card = gets.chomp
-  dealers_cards << dealers_card.to_i
-  dealers_cards << rand(2..11)
-  players_sum = players_cards.inject{|sum, x| sum + x }
-  dealers_sum = dealers_cards.inject{|sum, x| sum + x }
+suits = ["Spades", "Hearts", "Diamonds", "Clubs"]
+players_cards = []
+dealers_cards = []
+puts "You have entered the Blackjack guide"
+#get first card from user in explicit format
+# first_card = "9 of Spades"
+# first_card = "#{rand(2..9)} of #{suits.sample}"
+puts "Enter your first card"
+first_card = gets.chomp
+players_cards << first_card.to_i
+#get second card
+# second_card = "#{rand(2..9)} of #{suits.sample}"
+puts "Enter your second card"
+second_card = gets.chomp
+players_cards << second_card.to_i
+#get the dealers card
+# dealers_card = "10 of Clubs"
+#generate dealers cards
+# show = rand(2..11)
+# unkown = rand(2..11)
+puts "Enter dealers card"
+dealers_card = gets.chomp
+dealers_cards << dealers_card.to_i
+dealers_cards << rand(2..11)
+players_sum = players_cards.inject{|sum, x| sum + x }
+dealers_sum = dealers_cards.inject{|sum, x| sum + x }
 
-  if dealers_sum == 21
-    puts "Natural"
-  end
+if dealers_sum == 21
+  puts "Natural"
+end
   # elsif dealers_sum > 17
   #   hit = rand(2..11)
   #   dealers_cards << hit
@@ -151,112 +151,112 @@ splits = {
     # end
 # puts "How do you want to play your hand? Hard  Soft  Split"
 
-  hand = "hard"
+hand = "hard"
 
-  while players_sum < 21 && dealers_sum != 21
-    if hand[0].downcase == "h"
-      puts "Hard Hand"
-      optimal(players_sum, dealers_cards.first, hard)
-      puts "What will be your next move?"
-      next_move = gets.chomp
-      if next_move.downcase == "hit"
-        card = rand(2..11)
-        players_cards << card
-        players_sum = players_cards.inject{|sum, x| sum + x }
-        puts "Players cards: #{players_cards} : #{players_sum}"
-      elsif next_move.downcase == "stand"
-        if players_sum > dealers_sum && players_sum <= 21
-          puts "You Win!"
+while players_sum < 21 && dealers_sum != 21
+  if hand[0].downcase == "h"
+    puts "Hard Hand"
+    optimal(players_sum, dealers_cards.first, hard)
+    puts "What will be your next move?"
+    next_move = gets.chomp
+    if next_move.downcase == "hit"
+      card = rand(2..11)
+      players_cards << card
+      players_sum = players_cards.inject{|sum, x| sum + x }
+      puts "Players cards: #{players_cards} : #{players_sum}"
+    elsif next_move.downcase == "stand"
+      if players_sum > dealers_sum && players_sum <= 21
+        puts "You Win!"
 
-          puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
-          puts "Players cards: #{players_cards} : #{players_sum}"
-          break
-        elsif players_sum == dealers_sum && players_sum <= 21
-          puts "equal"
-          break
-        else
-          puts "bust"
-          break
-        end
-      elsif next_move.downcase == "double"
-        card = rand(2..11)
-        players_cards << card
-        players_sum = players_cards.inject{|sum, x| sum + x }
+        puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
         puts "Players cards: #{players_cards} : #{players_sum}"
-        if players_sum > dealers_sum && players_sum <= 21
-          puts "You Win!"
-          puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
-          puts "Players cards: #{players_cards} : #{players_sum}"
-          break
-        elsif players_sum == dealers_sum && players_sum <= 21
-          puts "equal"
-          break
-        else
-          puts "bust"
-          break
-        end
-      elsif next_move.downcase == "split"
-        first_pair = []
-        second_pair = []
-        first_pair << players_cards.first
-        second_pair<< players_cards.last
-        card = rand(2..11)
-        first_pair << card
-        card2 = rand(2..11)
-        players_pair << card
-        players_sum_1 = first_pair.inject{|sum, x| sum + x }
+        break
+      elsif players_sum == dealers_sum && players_sum <= 21
+        puts "equal"
+        break
+      else
+        puts "bust"
+        break
+      end
+    elsif next_move.downcase == "double"
+      card = rand(2..11)
+      players_cards << card
+      players_sum = players_cards.inject{|sum, x| sum + x }
+      puts "Players cards: #{players_cards} : #{players_sum}"
+      if players_sum > dealers_sum && players_sum <= 21
+        puts "You Win!"
+        puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
+        puts "Players cards: #{players_cards} : #{players_sum}"
+        break
+      elsif players_sum == dealers_sum && players_sum <= 21
+        puts "equal"
+        break
+      else
+        puts "bust"
+        break
+      end
+    elsif next_move.downcase == "split"
+      first_pair = []
+      second_pair = []
+      first_pair << players_cards.first
+      second_pair<< players_cards.last
+      card = rand(2..11)
+      first_pair << card
+      card2 = rand(2..11)
+      players_pair << card
+      players_sum_1 = first_pair.inject{|sum, x| sum + x }
+      puts "#{players_sum_1}"
+
+      if players_sum_1 > dealers_sum && players_sum_1 <= 21
+        puts "You Win!"
+        puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
+        puts "Players cards: #{players_sum}"
+        break
+      elsif players_sum_1 == dealers_sum && players_sum_1 <= 21
+        puts "equal"
+        break
+      elsif players_sum_1 == 21
+        puts "Blackjack"
+        break
+      else
+        puts "bust"
         puts "#{players_sum_1}"
-
-        if players_sum_1 > dealers_sum && players_sum_1 <= 21
-          puts "You Win!"
-          puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
-          puts "Players cards: #{players_sum}"
-          break
-        elsif players_sum_1 == dealers_sum && players_sum_1 <= 21
-          puts "equal"
-          break
-        elsif players_sum_1 == 21
-          puts "Blackjack"
-          break
-        else
-          puts "bust"
-          puts "#{players_sum_1}"
-          break
-        end
-        players_sum_2 = first_card.inject{|sum, x| sum + x }
-        puts "#{players_sum_2}"
-        if players_sum_2 > dealers_sum && players_sum_2 <= 21
-          puts "You Win!"
-          puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
-          puts "Players cards: #{players_cards} : #{players_sum}"
-          break
-        elsif players_sum_2 == dealers_sum && players_sum_2 <= 21
-          puts "equal"
-          break
-        elsif players_sum_2 == 21
-          puts "Blackjack"
-          break
-        else
-          puts "bust"
-          break
-        end
+        break
       end
-    elsif hand[1].downcase == "p"
-      puts "split"
-      if optimal(players_cards, dealers_cards.first, splits)
-        puts "What will be your next move?"
-        move = gets.chomp
+      players_sum_2 = first_card.inject{|sum, x| sum + x }
+      puts "#{players_sum_2}"
+      if players_sum_2 > dealers_sum && players_sum_2 <= 21
+        puts "You Win!"
+        puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
+        puts "Players cards: #{players_cards} : #{players_sum}"
+        break
+      elsif players_sum_2 == dealers_sum && players_sum_2 <= 21
+        puts "equal"
+        break
+      elsif players_sum_2 == 21
+        puts "Blackjack"
+        break
+      else
+        puts "bust"
+        break
       end
-    elsif hand[0].downcase == "s"
-      puts "soft"
-      if optimal(players_cards, dealers_cards.first, soft)
-        puts "What will be your next move?"
-        move = gets.chomp
-      end
-    else
-     puts "something went wrong"
     end
+  elsif hand[1].downcase == "p"
+    puts "split"
+    if optimal(players_cards, dealers_cards.first, splits)
+      puts "What will be your next move?"
+      move = gets.chomp
+    end
+  elsif hand[0].downcase == "s"
+    puts "soft"
+    if optimal(players_cards, dealers_cards.first, soft)
+      puts "What will be your next move?"
+      move = gets.chomp
+    end
+  else
+   puts "something went wrong"
   end
+end
 
 # puts "Your cards are: The #{first_card} and the #{second_card}"
 # puts "Sum = #{player}"

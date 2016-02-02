@@ -18,8 +18,17 @@ all_guesses = []
     guess = gets.chomp
     number = rand(1..10)
     count = 1
-    while count < 5
-      if guess.to_i == number
+    puts "#{number}"
+    while count <= 5
+      if guess == ""
+        puts "Did you forget to type?"
+        puts "Please enter another guess!"
+        guess = gets.chomp
+      elsif !is_integer(guess)
+        puts "That is not a number!"
+        puts "Please enter another guess!"
+        guess = gets.chomp
+      elsif guess.to_i == number
         number == guess.to_i
         puts "You got it! #{number} is right!"
         break
