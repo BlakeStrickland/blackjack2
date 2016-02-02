@@ -10,6 +10,7 @@ end
 puts "Lets play a game, Guess my number!"
 puts "Please enter which game mode you would like to play: Easy(E), Medium(M) or Hard (H)"
 gameplay = gets.chomp
+all_guesses = []
   if gameplay[0].downcase == "e"
     puts "Easy mode!"
     puts "The number your looking for is between 1 and 10."
@@ -22,14 +23,20 @@ gameplay = gets.chomp
         number == guess.to_i
         puts "You got it! #{number} is right!"
         break
+      elsif all_guesses.include?(guess)
+        puts "Did you forget what you just did?"
+        puts "Please enter another guess!"
+        guess = gets.chomp
       elsif number < guess.to_i
         puts "Your guess is too high!"
+        all_guesses << guess
         count += 1
         puts "You have #{(6-count)} guess(s) left"
         puts "Please enter another guess!"
         guess = gets.chomp
       elsif number > guess.to_i
         puts "Your guess is too low!"
+        all_guesses << guess
         count += 1
         puts "You have #{(6-count)} guess(s) left"
         puts "Please enter another guess!"
@@ -51,14 +58,20 @@ gameplay = gets.chomp
         number == guess.to_i
         puts "You got it! #{number} is right!"
         break
+      elsif all_guesses.include?(guess)
+        puts "Did you forget what you just did?"
+        puts "Please enter another guess!"
+        guess = gets.chomp
       elsif number < guess.to_i
         puts "Your guess is too high!"
+        all_guesses << guess
         count += 1
         puts "You have #{(6-count)} guess(s) left"
         puts "Please enter another guess!"
         guess = gets.chomp
       elsif number > guess.to_i
         puts "Your guess is too low!"
+        all_guesses << guess
         count += 1
         puts "You have #{(6-count)} guess(s) left"
         puts "Please enter another guess!"
@@ -80,14 +93,20 @@ gameplay = gets.chomp
         number == guess.to_i
         puts "You got it! #{number} is right!"
         break
+      elsif all_guesses.include?(guess)
+        puts "Did you forget what you just did?"
+        puts "Please enter another guess!"
+        guess = gets.chomp
       elsif number < guess.to_i
         puts "Your guess is too high!"
+        all_guesses << guess
         count += 1
         puts "You have #{(6-count)} guess(s) left"
         puts "Please enter another guess!"
         guess = gets.chomp
       elsif number > guess.to_i
         puts "Your guess is too low!"
+        all_guesses << guess
         count += 1
         puts "You have #{(6-count)} guess(s) left"
         puts "Please enter another guess!"
