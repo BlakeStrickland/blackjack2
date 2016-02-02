@@ -57,7 +57,7 @@ def game_mode(gameplay)
     puts "The number your looking for is between 1 and 10."
     puts "Please enter yor guess!"
     guess = gets.chomp
-    number = rand(1..10)
+    number = [1,2,3,4,5,6,7,8,9,10].sample
     play(guess, number)
     wanted_number(number)
   elsif gameplay[0].downcase == "m"
