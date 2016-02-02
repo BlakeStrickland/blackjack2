@@ -45,11 +45,14 @@ def play(guess, number)
 end
 
 def wanted_number(number)
-  puts "The number you were looing for was #{number}!"
+  puts "The number you were looking for was #{number}!"
 end
 
 def game_mode(gameplay)
-  if gameplay[0].downcase == "e"
+  if gameplay == ""
+    puts "Invalid game mode"
+    puts "Restart applications and follow directions!"
+  elsif gameplay[0].downcase == "e"
     puts "Easy mode!"
     puts "The number your looking for is between 1 and 10."
     puts "Please enter yor guess!"
@@ -75,8 +78,13 @@ def game_mode(gameplay)
     wanted_number(number)
   else
     puts "Invalid game mode"
+    puts "Restart applications and follow directions!"
   end
 end
+
+
+
+
 puts "Lets play a game, Guess my number!"
 puts "Please enter which game mode you would like to play: Easy(E), Medium(M) or Hard (H)"
 gameplay = gets.chomp
