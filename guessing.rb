@@ -1,5 +1,5 @@
 def is_integer(guess)
-  guess.to_i.to_s == guess
+  guess.to_i.to_s == guess || guess.to_f.to_s == guess
 end
 
 def numbernil(guess)
