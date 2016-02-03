@@ -46,6 +46,41 @@ def play_again
   end
 end
 
+def letter_cards(card, players_cards)
+  if card.downcase == "a"
+    card = 11
+    players_cards << card
+    players_cards = players_cards.delete_if {|card| card == 0}
+  elsif card.downcase == "k" || card.downcase == "q" || card.downcase == "j"
+    card = 10
+    players_cards << card
+    players_cards = players_cards.delete_if {|card| card == 0}
+  else
+    players_cards << card
+  end
+end
+
+def dealer_hits(dealers_sum, dealers_cards, players_sum)
+  if dealers_sum < 16
+    dealers_cards << rand(1..11)
+    dealers_sum = dealers_cards.inject{|sum, x| sum + x }
+
+    if dealers_sum == 21
+      puts "Dealer has Blackjack"
+    elsif dealers_sum > players_sum
+      puts "Dealer wins"
+    elsif dealers_sum > 21
+      puts "Dealer Busts"
+    elsif players_sum > 21
+      puts "Bust"
+    elsif players_sum == dealers_sum && players_sum <= 21
+      puts "Equal"
+    elsif players_sum > dealers_sum
+      puts "You win!"
+    end
+  end
+end
+
 #hard
 hard = {
   [4, 2] => "Hit",[4, 3] => "Hit",[4, 4] => "Hit",[4, 5] => "Hit",[4, 6] => "Hit",[4, 7] => "Hit",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
@@ -97,14 +132,14 @@ soft = {
   #soft
 
 splits = {
-[4, 2] => "Ph",[4, 3] => "Ph",[4, 4] => "P",[4, 5] => "P",[4, 6] => "P",[4, 7] => "P",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
-[6, 2] => "Ph",[6, 3] => "Ph",[6, 4] => "P",[6, 5] => "P",[6, 6] => "P",[6, 7] => "P",[6, 8] => "Hit",[6, 9] => "Hit",[6, 10] => "Hit",[6, 11] => "Hit",
-[8, 2] => "Hit",[8, 3] => "Hit",[8, 4] => "Hit",[8, 5] => "Ph",[8, 6] => "Ph",[8, 7] => "Hit",[8, 8] => "Hit",[8, 9] => "Hit",[8, 10] => "Hit",[8, 11] => "Hit",
-[12, 2] => "Ph",[12, 3] => "P",[12, 4] => "P",[12, 5] => "P",[12, 6] => "P",[12, 7] => "P",[12, 8] => "Hit",[12, 9] => "Hit",[12, 10] => "Hit",[12, 11] => "Hit",
-[14, 2] => "P",[14, 3] => "P",[14, 4] => "P",[14, 5] => "P",[14, 6] => "P",[14, 7] => "P",[14, 8] => "Hit",[14, 9] => "Hit",[14, 10] => "Hit",[14, 11] => "Hit",
-[16, 2] => "P",[16, 3] => "P",[16, 4] => "P",[16, 5] => "P",[16, 6] => "P",[16, 7] => "P",[16, 8] => "P",[16, 9] => "P",[16, 10] => "P",[16, 11] => "P",
-[18, 2] => "P",[18, 3] => "P",[18, 4] => "P",[18, 5] => "P",[18, 6] => "P",[18, 7] => "S",[18, 8] => "P",[18, 9] => "P",[18, 10] => "S",[18, 11] => "S",
-[22, 2] => "P",[22, 3] => "P",[22, 4] => "P",[22, 5] => "P",[22, 6] => "P",[22, 7] => "P",[22, 8] => "P",[22, 9] => "P",[22, 10] => "P",[22, 11] => "P"
+  [4, 2] => "Ph",[4, 3] => "Ph",[4, 4] => "P",[4, 5] => "P",[4, 6] => "P",[4, 7] => "P",[4, 8] => "Hit",[4, 9] => "Hit",[4, 10] => "Hit",[4, 11] => "Hit",
+  [6, 2] => "Ph",[6, 3] => "Ph",[6, 4] => "P",[6, 5] => "P",[6, 6] => "P",[6, 7] => "P",[6, 8] => "Hit",[6, 9] => "Hit",[6, 10] => "Hit",[6, 11] => "Hit",
+  [8, 2] => "Hit",[8, 3] => "Hit",[8, 4] => "Hit",[8, 5] => "Ph",[8, 6] => "Ph",[8, 7] => "Hit",[8, 8] => "Hit",[8, 9] => "Hit",[8, 10] => "Hit",[8, 11] => "Hit",
+  [12, 2] => "Ph",[12, 3] => "P",[12, 4] => "P",[12, 5] => "P",[12, 6] => "P",[12, 7] => "P",[12, 8] => "Hit",[12, 9] => "Hit",[12, 10] => "Hit",[12, 11] => "Hit",
+  [14, 2] => "P",[14, 3] => "P",[14, 4] => "P",[14, 5] => "P",[14, 6] => "P",[14, 7] => "P",[14, 8] => "Hit",[14, 9] => "Hit",[14, 10] => "Hit",[14, 11] => "Hit",
+  [16, 2] => "P",[16, 3] => "P",[16, 4] => "P",[16, 5] => "P",[16, 6] => "P",[16, 7] => "P",[16, 8] => "P",[16, 9] => "P",[16, 10] => "P",[16, 11] => "P",
+  [18, 2] => "P",[18, 3] => "P",[18, 4] => "P",[18, 5] => "P",[18, 6] => "P",[18, 7] => "S",[18, 8] => "P",[18, 9] => "P",[18, 10] => "S",[18, 11] => "S",
+  [22, 2] => "P",[22, 3] => "P",[22, 4] => "P",[22, 5] => "P",[22, 6] => "P",[22, 7] => "P",[22, 8] => "P",[22, 9] => "P",[22, 10] => "P",[22, 11] => "P"
           }
 
   # puts "Splits Ph - #{splits[[4,2]]}"
@@ -118,43 +153,46 @@ suits = ["Spades", "Hearts", "Diamonds", "Clubs"]
 players_cards = []
 dealers_cards = []
 puts "You have entered the Blackjack guide"
-#get first card from user in explicit format
-# first_card = "9 of Spades"
-# first_card = "#{rand(2..9)} of #{suits.sample}"
+
 puts "Enter your first card"
 first_card = gets.chomp
 players_cards << first_card.to_i
-#get second card
-# second_card = "#{rand(2..9)} of #{suits.sample}"
 puts "Enter your second card"
 second_card = gets.chomp
 players_cards << second_card.to_i
-#get the dealers card
-# dealers_card = "10 of Clubs"
-#generate dealers cards
-# show = rand(2..11)
-# unkown = rand(2..11)
+
 puts "Enter dealers card"
 dealers_card = gets.chomp
 dealers_cards << dealers_card.to_i
-dealers_cards << rand(2..11)
-players_sum = players_cards.inject{|sum, x| sum + x }
+dealers_cards << rand(1..11)
 dealers_sum = dealers_cards.inject{|sum, x| sum + x }
+
+
+
+if !(first_card.to_i.to_s == first_card || first_card.to_f.to_s == first_card)
+  letter_cards(first_card, players_cards)
+end
+if !(second_card.to_i.to_s == second_card || second_card.to_f.to_s == second_card)
+  letter_cards(second_card, players_cards)
+end
+if !(dealers_card.to_i.to_s == dealers_card || dealers_card.to_f.to_s == dealers_card)
+  letter_cards(dealers_card, dealers_cards)
+end
+
+
+dealers_sum = dealers_cards.inject{|sum, x| sum + x }
+players_sum = players_cards.inject{|sum, x| sum + x }
+hand = "hard"
 
 if dealers_sum == 21
   puts "Natural"
 end
-  # elsif dealers_sum > 17
-  #   hit = rand(2..11)
-  #   dealers_cards << hit
-    # if dealers_sum = dealers_cards.inject{|sum, x| sum + x } >
-    # end
-# puts "How do you want to play your hand? Hard  Soft  Split"
 
-hand = "hard"
-
-while players_sum < 21 && dealers_sum != 21
-  if hand[0].downcase == "h"
+while players_sum <= 21 && dealers_sum != 21
+  if players_sum == 21
+    puts "Player has Blackjack!"
+    break
+  elsif hand[0].downcase == "h"
     puts "Hard Hand"
     optimal(players_sum, dealers_cards.first, hard)
     puts "What will be your next move?"
@@ -163,38 +201,21 @@ while players_sum < 21 && dealers_sum != 21
       card = rand(2..11)
       players_cards << card
       players_sum = players_cards.inject{|sum, x| sum + x }
+      dealer_hits(dealers_sum, dealers_cards, players_sum)
       puts "Players cards: #{players_cards} : #{players_sum}"
     elsif next_move.downcase == "stand"
-      if players_sum > dealers_sum && players_sum <= 21
-        puts "You Win!"
-
-        puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
-        puts "Players cards: #{players_cards} : #{players_sum}"
-        break
-      elsif players_sum == dealers_sum && players_sum <= 21
-        puts "equal"
-        break
-      else
-        puts "bust"
-        break
-      end
+      dealer_hits(dealers_sum, dealers_cards, players_sum)
+      puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
+      puts "Players cards: #{players_cards} : #{players_sum}"
+      break
     elsif next_move.downcase == "double"
       card = rand(2..11)
       players_cards << card
       players_sum = players_cards.inject{|sum, x| sum + x }
+      dealer_hits(dealers_sum, dealers_cards, players_sum)
+      puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
       puts "Players cards: #{players_cards} : #{players_sum}"
-      if players_sum > dealers_sum && players_sum <= 21
-        puts "You Win!"
-        puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
-        puts "Players cards: #{players_cards} : #{players_sum}"
-        break
-      elsif players_sum == dealers_sum && players_sum <= 21
-        puts "equal"
-        break
-      else
-        puts "bust"
-        break
-      end
+      break
     elsif next_move.downcase == "split"
       first_pair = []
       second_pair = []

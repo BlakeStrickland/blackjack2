@@ -19,7 +19,6 @@ def play(guess, number)
       puts "Please enter another guess!"
       guess = gets.chomp
     elsif guess.to_i == number
-      number == guess.to_i
       puts "You got it! #{number} is right!"
       break
     elsif all_guesses.include?(guess)
