@@ -38,14 +38,6 @@ def optimal(players_sum, dealers_card, type)
   end
 end
 
-def play_again
-  puts "Play again?"
-  play_again = gets.chomp
-  if play_again[0].downcase == "y"
-    players_sum = 10
-  end
-end
-
 def letter_cards(card, players_cards)
   if card.downcase == "a"
     card = 11
@@ -61,22 +53,30 @@ def letter_cards(card, players_cards)
 end
 
 def dealer_hits(dealers_sum, dealers_cards, players_sum)
-  if dealers_sum < 16
+  if dealers_sum < 17
     dealers_cards << rand(1..11)
     dealers_sum = dealers_cards.inject{|sum, x| sum + x }
 
     if dealers_sum == 21
       puts "Dealer has Blackjack"
+      exit
+    elsif dealers_sum > 21
+      puts "Dealer busts"
+      exit
     elsif dealers_sum > players_sum
       puts "Dealer wins"
+      exit
     elsif dealers_sum > 21
       puts "Dealer Busts"
+      exit
     elsif players_sum > 21
       puts "Bust"
+      exit
     elsif players_sum == dealers_sum && players_sum <= 21
       puts "Equal"
     elsif players_sum > dealers_sum
       puts "You win!"
+      exit
     end
   end
 end
@@ -188,6 +188,10 @@ if dealers_sum == 21
   puts "Natural"
 end
 
+if players_sum == 22
+  player_sum = 12
+end
+
 while players_sum <= 21 && dealers_sum != 21
   if players_sum == 21
     puts "Player has Blackjack!"
@@ -202,65 +206,44 @@ while players_sum <= 21 && dealers_sum != 21
       players_cards << card
       players_sum = players_cards.inject{|sum, x| sum + x }
       dealer_hits(dealers_sum, dealers_cards, players_sum)
+      puts "Dealers cards: #{dealers_cards}"
       puts "Players cards: #{players_cards} : #{players_sum}"
+
     elsif next_move.downcase == "stand"
       dealer_hits(dealers_sum, dealers_cards, players_sum)
-      puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
+      puts "Dealers cards: #{dealers_cards}"
       puts "Players cards: #{players_cards} : #{players_sum}"
       break
+
     elsif next_move.downcase == "double"
       card = rand(2..11)
       players_cards << card
       players_sum = players_cards.inject{|sum, x| sum + x }
       dealer_hits(dealers_sum, dealers_cards, players_sum)
-      puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
+      puts "Dealers cards: #{dealers_cards}"
       puts "Players cards: #{players_cards} : #{players_sum}"
       break
     elsif next_move.downcase == "split"
       first_pair = []
       second_pair = []
       first_pair << players_cards.first
-      second_pair<< players_cards.last
+      second_pair << players_cards.last
+
       card = rand(2..11)
       first_pair << card
       card2 = rand(2..11)
-      players_pair << card
-      players_sum_1 = first_pair.inject{|sum, x| sum + x }
-      puts "#{players_sum_1}"
+      second_pair << card2
 
-      if players_sum_1 > dealers_sum && players_sum_1 <= 21
-        puts "You Win!"
-        puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
-        puts "Players cards: #{players_sum}"
-        break
-      elsif players_sum_1 == dealers_sum && players_sum_1 <= 21
-        puts "equal"
-        break
-      elsif players_sum_1 == 21
-        puts "Blackjack"
-        break
-      else
-        puts "bust"
-        puts "#{players_sum_1}"
-        break
-      end
-      players_sum_2 = first_card.inject{|sum, x| sum + x }
+      players_sum_1 = first_pair.inject{|sum, x| sum + x }
+      puts "#{card}"
+      puts "#{players_sum_1}"
+      dealer_hits(dealers_sum, dealers_cards, players_sum_1)
+
+      players_sum_2 = second_pair.inject{|sum, x| sum + x }
+      puts "#{card2}"
       puts "#{players_sum_2}"
-      if players_sum_2 > dealers_sum && players_sum_2 <= 21
-        puts "You Win!"
-        puts "Dealers cards: #{dealers_cards} #{dealers_sum}"
-        puts "Players cards: #{players_cards} : #{players_sum}"
-        break
-      elsif players_sum_2 == dealers_sum && players_sum_2 <= 21
-        puts "equal"
-        break
-      elsif players_sum_2 == 21
-        puts "Blackjack"
-        break
-      else
-        puts "bust"
-        break
-      end
+      dealer_hits(dealers_sum, dealers_cards, players_sum_2)
+
     end
   elsif hand[1].downcase == "p"
     puts "split"

@@ -24,7 +24,7 @@ us aud cad nzd $
 euro €
 pound £
 india rupee ₹
-Zimbabwe Dollar Z$
+Zimbabwe Dollar Z $
 Japan Yen ¥
 
 if current_currency == :USD
